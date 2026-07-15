@@ -52,3 +52,11 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Mecatrix — local data & artifacts
+/db/
+/download/
+/upload/
+mini-services/*/node_modules
+mini-services/*/*.log
+worklog.md
