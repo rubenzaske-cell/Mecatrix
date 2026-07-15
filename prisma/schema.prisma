@@ -1,0 +1,75 @@
+// Mecatrix — AI-powered automotive learning & diagnostic platform
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Vehicle {
+  id          String   @id @default(cuid())
+  nickname    String
+  manufacturer String
+  model       String
+  year        Int
+  engineType  String   // gasoline | diesel | hybrid | electric
+  displacement String?
+  fuelSystem  String?
+  vin         String?
+  photoUrl    String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  diagnoses   Diagnosis[]
+  maintenance MaintenanceRecord[]
+}
+
+model Diagnosis {
+  id          String   @id @default(cuid())
+  vehicleId   String?
+  vehicle     Vehicle? @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  summary     String
+  confidence  Int      // 0-100 overall confidence
+  severity    String   // normal | inspection | critical
+  findings    String   // JSON string of structured findings
+  photoUrls   String   // JSON array of image data urls / paths
+  audioTranscript String?
+  createdAt   DateTime @default(now())
+}
+
+model MaintenanceRecord {
+  id          String   @id @default(cuid())
+  vehicleId   String
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  date        DateTime
+  mileage     Int?
+  cost        Float?
+  technician  String?
+  status      String   @default("completed") // scheduled | in_progress | completed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  role      String   // user | assistant
+  content   String
+  skillLevel String? // beginner | intermediate | expert
+  createdAt DateTime @default(now())
+}
+
+model CourseProgress {
+  id           String   @id @default(cuid())
+  courseSlug   String
+  courseTitle  String
+  completed    Boolean  @default(false)
+  progress     Int      @default(0) // 0-100
+  score        Int?
+  lastOpenedAt DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

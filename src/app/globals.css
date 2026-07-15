@@ -1,0 +1,302 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  /* Mecatrix brand tokens */
+  --color-amber: var(--amber);
+  --color-amber-foreground: var(--amber-foreground);
+  --color-emerald: var(--emerald);
+  --color-emerald-foreground: var(--emerald-foreground);
+}
+
+/* ===== MECATRIX LIGHT THEME ===== */
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.985 0.004 75);
+  --foreground: oklch(0.18 0.01 75);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 75);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 75);
+  --primary: oklch(0.68 0.19 45);          /* amber/orange */
+  --primary-foreground: oklch(0.99 0.01 75);
+  --secondary: oklch(0.95 0.01 75);
+  --secondary-foreground: oklch(0.22 0.01 75);
+  --muted: oklch(0.95 0.008 75);
+  --muted-foreground: oklch(0.5 0.01 75);
+  --accent: oklch(0.94 0.02 75);
+  --accent-foreground: oklch(0.22 0.01 75);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(0.9 0.008 75);
+  --input: oklch(0.92 0.008 75);
+  --ring: oklch(0.68 0.19 45);
+  --chart-1: oklch(0.68 0.19 45);
+  --chart-2: oklch(0.7 0.15 160);
+  --chart-3: oklch(0.75 0.18 70);
+  --chart-4: oklch(0.62 0.2 350);
+  --chart-5: oklch(0.65 0.15 230);
+  --sidebar: oklch(0.98 0.004 75);
+  --sidebar-foreground: oklch(0.18 0.01 75);
+  --sidebar-primary: oklch(0.68 0.19 45);
+  --sidebar-primary-foreground: oklch(0.99 0.01 75);
+  --sidebar-accent: oklch(0.95 0.01 75);
+  --sidebar-accent-foreground: oklch(0.22 0.01 75);
+  --sidebar-border: oklch(0.9 0.008 75);
+  --sidebar-ring: oklch(0.68 0.19 45);
+  /* Brand */
+  --amber: oklch(0.68 0.19 45);
+  --amber-foreground: oklch(0.99 0.01 75);
+  --emerald: oklch(0.7 0.15 160);
+  --emerald-foreground: oklch(0.99 0.01 75);
+  --grid-line: oklch(0.9 0.005 75 / 60%);
+}
+
+/* ===== MECATRIX DARK THEME (default) ===== */
+.dark {
+  --background: oklch(0.14 0.008 260);     /* deep charcoal w/ cool tint */
+  --foreground: oklch(0.97 0.005 75);
+  --card: oklch(0.185 0.01 260);
+  --card-foreground: oklch(0.97 0.005 75);
+  --popover: oklch(0.18 0.01 260);
+  --popover-foreground: oklch(0.97 0.005 75);
+  --primary: oklch(0.72 0.19 48);          /* vibrant amber-orange */
+  --primary-foreground: oklch(0.16 0.01 260);
+  --secondary: oklch(0.24 0.012 260);
+  --secondary-foreground: oklch(0.97 0.005 75);
+  --muted: oklch(0.22 0.01 260);
+  --muted-foreground: oklch(0.68 0.012 260);
+  --accent: oklch(0.26 0.015 260);
+  --accent-foreground: oklch(0.97 0.005 75);
+  --destructive: oklch(0.66 0.21 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.72 0.19 48);
+  --chart-1: oklch(0.72 0.19 48);
+  --chart-2: oklch(0.72 0.15 162);
+  --chart-3: oklch(0.78 0.18 70);
+  --chart-4: oklch(0.65 0.2 350);
+  --chart-5: oklch(0.62 0.15 230);
+  --sidebar: oklch(0.16 0.01 260);
+  --sidebar-foreground: oklch(0.97 0.005 75);
+  --sidebar-primary: oklch(0.72 0.19 48);
+  --sidebar-primary-foreground: oklch(0.16 0.01 260);
+  --sidebar-accent: oklch(0.22 0.012 260);
+  --sidebar-accent-foreground: oklch(0.97 0.005 75);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.72 0.19 48);
+  /* Brand */
+  --amber: oklch(0.72 0.19 48);
+  --amber-foreground: oklch(0.16 0.01 260);
+  --emerald: oklch(0.72 0.15 162);
+  --emerald-foreground: oklch(0.16 0.01 260);
+  --grid-line: oklch(1 0 0 / 4%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ===== Mecatrix custom utilities ===== */
+@layer utilities {
+  /* Glassmorphic surface */
+  .mcx-glass {
+    background: color-mix(in oklch, var(--card) 72%, transparent);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+  .dark .mcx-glass {
+    background: color-mix(in oklch, var(--card) 60%, transparent);
+  }
+
+  /* Subtle inner border for depth */
+  .mcx-inset-ring {
+    box-shadow: inset 0 1px 0 0 color-mix(in oklch, var(--foreground) 8%, transparent);
+  }
+
+  /* Amber glow */
+  .mcx-glow-amber {
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--amber) 30%, transparent),
+      0 8px 30px -8px color-mix(in oklch, var(--amber) 45%, transparent);
+  }
+  .mcx-glow-emerald {
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--emerald) 30%, transparent),
+      0 8px 30px -8px color-mix(in oklch, var(--emerald) 45%, transparent);
+  }
+
+  /* Gradient text */
+  .mcx-text-gradient {
+    background: linear-gradient(120deg, var(--amber), var(--emerald));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Animated gradient border */
+  .mcx-border-gradient {
+    position: relative;
+  }
+  .mcx-border-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+      color-mix(in oklch, var(--amber) 60%, transparent),
+      transparent 40%,
+      color-mix(in oklch, var(--emerald) 50%, transparent));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Workshop grid background */
+  .mcx-grid-bg {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: -1px -1px;
+  }
+
+  /* Radial spotlight */
+  .mcx-spotlight {
+    background:
+      radial-gradient(60% 50% at 50% 0%, color-mix(in oklch, var(--amber) 14%, transparent) 0%, transparent 70%),
+      radial-gradient(50% 40% at 90% 10%, color-mix(in oklch, var(--emerald) 10%, transparent) 0%, transparent 70%);
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .mcx-no-scrollbar::-webkit-scrollbar { display: none; }
+  .mcx-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Custom thin scrollbar */
+  .mcx-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .mcx-scroll::-webkit-scrollbar-track { background: transparent; }
+  .mcx-scroll::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 18%, transparent);
+    border-radius: 9999px;
+  }
+  .mcx-scroll::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--amber) 50%, transparent);
+  }
+
+  /* Status colors */
+  .mcx-status-ok { color: oklch(0.72 0.17 150); }
+  .mcx-bg-ok { background: oklch(0.72 0.17 150 / 16%); }
+  .mcx-status-warn { color: oklch(0.78 0.17 75); }
+  .mcx-bg-warn { background: oklch(0.78 0.17 75 / 16%); }
+  .mcx-status-crit { color: oklch(0.68 0.21 25); }
+  .mcx-bg-crit { background: oklch(0.68 0.21 25 / 16%); }
+}
+
+/* ===== Animations ===== */
+@keyframes mcx-spin-slow { to { transform: rotate(360deg); } }
+.mcx-spin-slow { animation: mcx-spin-slow 18s linear infinite; }
+
+@keyframes mcx-pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  70% { transform: scale(1.4); opacity: 0; }
+  100% { opacity: 0; }
+}
+.mcx-pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in oklch, var(--amber) 50%, transparent);
+  animation: mcx-pulse-ring 2.2s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+@keyframes mcx-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.mcx-float { animation: mcx-float 5s ease-in-out infinite; }
+
+@keyframes mcx-scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(2100%); opacity: 0; }
+}
+.mcx-scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 14%;
+  background: linear-gradient(to bottom, transparent, color-mix(in oklch, var(--amber) 55%, transparent), transparent);
+  animation: mcx-scan 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes mcx-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.mcx-shimmer {
+  background: linear-gradient(90deg,
+    color-mix(in oklch, var(--foreground) 6%, transparent) 25%,
+    color-mix(in oklch, var(--foreground) 14%, transparent) 37%,
+    color-mix(in oklch, var(--foreground) 6%, transparent) 63%);
+  background-size: 200% 100%;
+  animation: mcx-shimmer 1.6s infinite;
+}
+
+@keyframes mcx-equalize {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.mcx-equalize-bar { transform-origin: bottom; animation: mcx-equalize 1s ease-in-out infinite; }
+
+/* Safe area for mobile footer */
+.mcx-safe-b { padding-bottom: env(safe-area-inset-bottom); }
