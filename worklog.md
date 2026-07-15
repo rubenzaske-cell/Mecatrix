@@ -61,3 +61,20 @@ Stage Summary:
   * MecaAI instructor reuses /api/meca-ai (LLM) for both step guidance and wrong-tool deeper explanations.
 - `bun run lint` clean (0 errors, 0 warnings). Screenshots saved: workshop-practice, workshop-guided-step2, workshop-exam.
 - Virtual Workshop is now a professional interactive simulator, not just a visualization.
+
+---
+Task ID: 3
+Agent: Orchestrator (Z.ai Code)
+Task: Integrate the uploaded "Very Simple Cartoon Robot" as the MecaAI mascot throughout the app
+
+Work Log:
+- Extracted uploaded zip: /home/z/my-project/upload/very-simple-cartoon-robot-3d-model.zip → CartoonRobot.blend (Blender source, not web-loadable) + 6 preview JPGs.
+- Blender not available on system for .blend→.glb conversion. Used VLM skill (z-ai vision) to analyze the robot's appearance from preview images: blocky low-poly humanoid, warm light-brown body (#C4A57C), red LED eyes (#FF3A3A) in square recesses, tall antenna, small black mouth, segmented arms with paddle hands, straight legs. Style = voxel/low-poly — ideal for procedural reconstruction.
+- Created src/components/mecatrix/three/meca-mascot.tsx: MecaAI mascot built procedurally from Three.js primitives matching the reference. Components: head (truncated box w/ slanted bevel top), antenna (cylinder + glowing amber sphere tip with point light), red LED eyes (recessed emissive cubes, toneMapped=false for true glow), black mouth, tapered torso with chest panel + status LED, 3-segment arms (shoulder/upper/elbow/forearm/paddle hand), 2-segment legs with foot pads. Idle animations via useFrame: gentle bob, head tilt + look-around, antenna pulse (fast blink when thinking), eye glow pulse, arm sway. Accepts `thinking` prop to intensify animations during LLM responses.
+- Created src/components/mecatrix/three/mascot-canvas.tsx: compact self-contained Canvas wrapper with lighting rig (ambient + directional + warm/cool accent point lights), Float wrapper, ContactShadows, Environment preset. Supports `thinking` and `interactive` (OrbitControls auto-rotate) props.
+- Integrated into MecaAI view (src/components/mecatrix/views/meca-ai.tsx): added mascot banner above chat — 3D robot on left, identity card on right with ONLINE/THINKING status badge that reacts to `loading` state. When user sends a message, badge flips to "THINKING…" and mascot antenna blinks fast + eyes pulse brighter.
+- Integrated into Home dashboard (src/components/mecatrix/views/home.tsx): restructured hero to 2-column flex layout — text+CTAs on left, floating interactive mascot companion on right (desktop, auto-rotating, with "MecaAI · your co-pilot" label).
+
+Stage Summary:
+- Agent Browser verification: Home renders mascot (379KB screenshot, 1 canvas element, zero errors). MecaAI view renders mascot banner with ONLINE badge (225KB screenshot). Console shows only standard Three.js deprecation warnings (harmless). `bun run lint` clean.
+- MecaAI mascot is now the visual identity of the assistant across the app, with personality (idle animations + reactive thinking state).

@@ -7,6 +7,7 @@ import { NAV_ITEMS } from "@/lib/mecatrix/nav-config";
 import { PageContainer, GlassCard, Stat } from "@/components/mecatrix/ui/primitives";
 import { cn } from "@/lib/utils";
 import { ENGINES, TOOLS, COURSES } from "@/data/catalog";
+import { MascotCanvas } from "@/components/mecatrix/three/mascot-canvas";
 import {
   ArrowRight, Bot, Stethoscope, Boxes, Cpu, Car, Wrench,
   GraduationCap, ClipboardList, Activity, Zap, ShieldCheck, Sparkles,
@@ -113,7 +114,8 @@ export function HomeView() {
           <div className="absolute inset-0 mcx-grid-bg opacity-40" />
           <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-amber/10 blur-3xl" />
           <div className="absolute -left-10 -bottom-16 h-56 w-56 rounded-full bg-emerald/10 blur-3xl" />
-          <div className="relative">
+          <div className="relative flex flex-col lg:flex-row lg:items-center gap-6">
+          <div className="relative flex-1 min-w-0">
             <div className="inline-flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-3 py-1 text-xs font-medium text-amber mb-4">
               <Sparkles className="h-3.5 w-3.5" />
               Next-generation automotive intelligence
@@ -144,6 +146,14 @@ export function HomeView() {
                 Ask MecaAI
               </Button>
             </div>
+          </div>
+          {/* MecaAI mascot companion */}
+          <div className="relative hidden lg:block w-[220px] shrink-0">
+            <MascotCanvas height={240} interactive />
+            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-background/70 backdrop-blur border border-amber/30 px-2.5 py-0.5 text-[10px] font-semibold text-amber">
+              MecaAI · your co-pilot
+            </div>
+          </div>
           </div>
         </GlassCard>
       </motion.div>

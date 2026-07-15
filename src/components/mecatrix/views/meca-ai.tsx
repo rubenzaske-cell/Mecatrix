@@ -10,6 +10,7 @@ import {
   Bot, Send, Sparkles, Trash2, User, Wrench, Cpu, AlertTriangle,
   GraduationCap, Loader2, Zap,
 } from "lucide-react";
+import { MascotCanvas } from "@/components/mecatrix/three/mascot-canvas";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
@@ -90,6 +91,42 @@ export function MecaAIView() {
           </Button>
         }
       />
+
+      {/* MecaAI mascot banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative overflow-hidden rounded-2xl mb-4"
+      >
+        <GlassCard className="relative overflow-hidden p-0 flex">
+          {/* ambient bg */}
+          <div className="absolute inset-0 mcx-grid-bg opacity-30" />
+          <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-amber/10 blur-3xl" />
+          <div className="absolute right-10 top-4 h-32 w-32 rounded-full bg-emerald/10 blur-3xl" />
+          {/* mascot 3D */}
+          <div className="relative w-[140px] sm:w-[180px] shrink-0">
+            <MascotCanvas thinking={loading} height={170} />
+          </div>
+          {/* identity */}
+          <div className="relative flex-1 flex flex-col justify-center pr-4 py-3 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald/15 border border-emerald/30 px-2.5 py-0.5 text-[10px] font-semibold text-emerald">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald" />
+                </span>
+                {loading ? "THINKING…" : "ONLINE"}
+              </span>
+            </div>
+            <h3 className="text-lg font-bold tracking-tight">
+              Meca<span className="text-amber">AI</span>
+            </h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Your AI mechanic mentor. Ask me anything about engines, diagnostics, or repairs.
+            </p>
+          </div>
+        </GlassCard>
+      </motion.div>
 
       {/* Skill level selector */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
